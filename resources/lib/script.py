@@ -6,6 +6,7 @@ import logging
 import xbmcaddon
 import xbmcgui
 import xbmc
+import urllib
 from subprocess import call
 
 logger = logging.getLogger(ADDON.getAddonInfo('mebo.updater'))
@@ -21,8 +22,8 @@ def show_dialog():
     xbmcgui.Dialog().ok(addon_name, line1)
 
 def download_addons():
-    addons = ['plugin.video.aswim']
+    addons = ['https://github.com/covenantkodi/repository.colossus/blob/master/repository.colossus/repository.colossus-999.999.9.zip']
     for a in addons:
         #call(["cd ~/.kodi/addons; wget %s" % a])
-        xbmc.InstallAddon(a)
+        urllib.urlretrieve(str(a), filename="/storage/.kodi/userdata/addons/")
         xbmc.Notification('Plugin Installed','You can now use this plugin!')
